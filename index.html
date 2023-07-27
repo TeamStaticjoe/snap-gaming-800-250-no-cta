@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			.sd-gaming-800-250-nocta {
+				width: 800px;
+				height: 250px;
+				background-color: #000;
+				overflow: hidden;
+				position: relative;
+				display: flex;
+			}
+
+			.top-text {
+				position: absolute;
+				z-index: 20;
+				top: 19px;
+				left: -170px;
+			}
+
+			.bottom-text {
+				position: absolute;
+				z-index: 20;
+				top: 165px;
+				left: 570px;
+			}
+
+			.lock-up {
+				position: absolute;
+				z-index: 20;
+				top: 62px;
+				right: 50px;
+			}
+
+			.red-mat {
+				width: 970px;
+				height: 250px;
+				position: absolute;
+				z-index: 10;
+				transform: scale(500%), translateX(200px);
+				left: -30px;
+			}
+			.image {
+				position: absolute;
+				z-index: 1;
+				transform-origin: top left;
+				left: 74px;
+				top: -7px;
+			}
+		</style>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+	</head>
+	<body>
+		<div class="sd-gaming-800-250-nocta" width="800" height="250">
+			<img class="top-text" src="assets/gaming-800-250-top-text.png" alt="" />
+			<img
+				class="bottom-text"
+				src="assets/gaming-800-250-bottom-text.png"
+				alt=""
+			/>
+			<img class="lock-up" src="assets/gaming-800-250-lock-up.png" alt="" />
+			<img class="red-mat" src="assets/gaming-800-250-red-mat.png" alt="" />
+			<img class="image" src="assets/gaming-800-250-image.jpg" alt="" />
+		</div>
+	</body>
+	<script>
+		const sdGaming800x250AnimateNoCTA = () => {
+			const redMat = document.querySelector(".sd-gaming-800-250-nocta .red-mat")
+			const image = document.querySelector(".sd-gaming-800-250-nocta .image")
+			const topText = document.querySelector(
+				".sd-gaming-800-250-nocta .top-text"
+			)
+			const bottomText = document.querySelector(
+				".sd-gaming-800-250-nocta .bottom-text"
+			)
+			const lockUp = document.querySelector(".sd-gaming-800-250-nocta .lock-up")
+
+			const tl = gsap.timeline()
+
+			tl.set(redMat, {
+				translateOrigin: "25% 50%",
+				scaleX: "500%",
+				scaleY: "500%",
+				x: "1000px",
+			})
+				.set(topText, { x: -170 })
+				.set(bottomText, { x: 570 })
+				.set(lockUp, { y: -262 })
+				.set(image, { x: -474, y: -237, scaleX: "150%", scaleY: "150%" })
+
+				.to(redMat, {
+					y: 0,
+					scaleX: "100%",
+					scaleY: "100%",
+					x: 0,
+					duration: 1.5,
+					ease: "power4.in",
+				})
+				.fromTo(
+					image,
+					{ x: -474, y: -237, scaleX: "150%", scaleY: "150%" },
+					{
+						x: -37,
+						y: -17,
+						scaleX: "42%",
+						scaleY: "42%",
+						duration: 1,
+						ease: "power1.in",
+					},
+					"<.75"
+				)
+				.to(topText, { x: 192, duration: 1, ease: "power1.inOut" }, "-=1")
+				.to(bottomText, { x: -282, duration: 1, ease: "power1.inOut" }, "<.125")
+				.to(lockUp, { y: 0, duration: 0.5, ease: "power1.inOut" }, "-=.65")
+		}
+		sdGaming800x250AnimateNoCTA()
+	</script>
+</html>
